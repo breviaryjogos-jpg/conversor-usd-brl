@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -5,48 +6,385 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#101a2b">
   <meta name="description" content="Converta dólar americano e real brasileiro usando a cotação mais recente disponível.">
-  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <title>Dólar ↔ Real</title>
   <style>
     :root{color-scheme:dark;--bg:#0a1220;--panel:#111d30;--line:rgba(183,205,231,.13);--muted:#9aabc1;--text:#f5f8fc;--blue:#53b9ec;--orange:#ff9b45;--green:#55d6a1;--red:#ff7c83}
-    *{box-sizing:border-box}html{min-height:100%;background:var(--bg)}body{margin:0;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:22px 16px calc(22px + env(safe-area-inset-bottom));font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:radial-gradient(ellipse at 8% 5%,rgba(48,133,181,.18),transparent 38%),radial-gradient(ellipse at 95% 92%,rgba(255,145,55,.13),transparent 35%),var(--bg)}.app{width:min(100%,430px)}.top{display:flex;align-items:center;justify-content:space-between;margin:0 2px 20px}.brand{display:flex;align-items:center;gap:11px}.mark{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(83,185,236,.22),rgba(255,155,69,.18));border:1px solid rgba(145,195,230,.2);font-size:20px;font-weight:800;color:#fff}.brand-title{font-size:16px;font-weight:750;letter-spacing:.01em}.brand-sub{font-size:11px;color:var(--muted);margin-top:2px;letter-spacing:.08em;text-transform:uppercase}.live{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-size:11px;color:#c6d6e8;background:rgba(255,255,255,.025)}.dot{width:7px;height:7px;border-radius:100%;background:var(--green);box-shadow:0 0 10px rgba(85,214,161,.65)}.card{background:linear-gradient(160deg,rgba(22,37,58,.98),rgba(14,25,42,.98));border:1px solid var(--line);border-radius:25px;padding:22px;box-shadow:0 24px 70px rgba(0,0,0,.33)}.eyebrow{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 11px}.amount-box{background:rgba(3,10,20,.35);border:1px solid rgba(174,203,229,.13);border-radius:17px;padding:15px 16px 13px;transition:border-color .2s}.amount-box:focus-within{border-color:rgba(83,185,236,.65)}.currency-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.currency{display:flex;align-items:center;gap:9px;font-size:14px;color:#dce8f5;font-weight:700}.flag{width:25px;height:25px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.07);font-size:16px}.currency small{display:block;color:var(--muted);font-size:11px;font-weight:500;margin-top:2px}input{display:block;width:100%;margin-top:11px;padding:0;border:0;outline:0;background:transparent;color:var(--text);font-size:clamp(29px,8vw,38px);font-weight:650;letter-spacing:-.04em;font-variant-numeric:tabular-nums}input::placeholder{color:#52647a}.swap-wrap{display:flex;align-items:center;gap:12px;margin:13px 0}.swap-line{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--line),transparent)}.swap{width:43px;height:43px;border-radius:14px;border:1px solid rgba(83,185,236,.28);background:rgba(83,185,236,.09);color:#75cef5;font-size:20px;cursor:pointer;transition:transform .2s,background .2s}.swap:active{transform:rotate(180deg) scale(.96);background:rgba(83,185,236,.18)}.result{margin-top:16px;padding:18px 17px 16px;border-radius:18px;background:linear-gradient(115deg,rgba(42,125,169,.16),rgba(255,155,69,.09));border:1px solid rgba(108,172,207,.19)}.result-label{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#a9bfd3;font-weight:700}.result-value{font-size:clamp(30px,8vw,39px);font-weight:750;letter-spacing:-.045em;margin-top:7px;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}.result-code{font-size:13px;color:#b1c2d5;margin-top:4px}.quote{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}.quote-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.quote-title{font-size:12px;color:#d9e4ef;font-weight:650}.refresh{border:0;background:transparent;color:#80ccef;font-size:12px;font-weight:650;padding:5px 0;cursor:pointer}.refresh:disabled{opacity:.5;cursor:wait}.rate-line{display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-size:12px;color:var(--muted)}.rate-line strong{font-weight:650;color:#e8f0f8;font-variant-numeric:tabular-nums;text-align:right}.change{font-variant-numeric:tabular-nums}.change.up{color:var(--green)}.change.down{color:var(--red)}.status{font-size:11px;color:var(--muted);margin-top:13px;line-height:1.45;min-height:16px}.status.error{color:#ffb3a9}.status.ok{color:#8bd9b9}.foot{margin:15px 8px 0;text-align:center;color:#778ba3;font-size:10px;line-height:1.5}button:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:3px}@media(max-width:360px){.card{padding:17px}.top{margin-bottom:15px}.live{font-size:10px;padding:6px 8px}}
+    *{box-sizing:border-box}
+    html{min-height:100%;background:var(--bg)}
+    body{margin:0;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:22px 16px calc(22px + env(safe-area-inset-bottom));font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:radial-gradient(ellipse at 8% 5%,rgba(48,133,181,.18),transparent 38%),radial-gradient(ellipse at 95% 92%,rgba(255,145,55,.13),transparent 35%),var(--bg)}
+    .app{width:min(100%,430px)}
+    .back-button{display:inline-flex;align-items:center;gap:8px;margin:0 0 20px 4px;color:#80ccef;text-decoration:none;font-size:13px;font-weight:650;transition:opacity .2s}
+    .back-button:hover{opacity:.75}
+    .back-button span{font-size:19px;line-height:1}
+    .top{display:flex;align-items:center;justify-content:space-between;margin:0 2px 20px}
+    .brand{display:flex;align-items:center;gap:11px}
+    .mark{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(83,185,236,.22),rgba(255,155,69,.18));border:1px solid rgba(145,195,230,.2);font-size:20px;font-weight:800;color:#fff}
+    .brand-title{font-size:16px;font-weight:750;letter-spacing:.01em}
+    .brand-sub{font-size:11px;color:var(--muted);margin-top:2px;letter-spacing:.08em;text-transform:uppercase}
+    .live{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-size:11px;color:#c6d6e8;background:rgba(255,255,255,.025)}
+    .dot{width:7px;height:7px;border-radius:100%;background:var(--green);box-shadow:0 0 10px rgba(85,214,161,.65)}
+    .card{background:linear-gradient(160deg,rgba(22,37,58,.98),rgba(14,25,42,.98));border:1px solid var(--line);border-radius:25px;padding:22px;box-shadow:0 24px 70px rgba(0,0,0,.33)}
+    .eyebrow{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 11px}
+    .amount-box{background:rgba(3,10,20,.35);border:1px solid rgba(174,203,229,.13);border-radius:17px;padding:15px 16px 13px;transition:border-color .2s}
+    .amount-box:focus-within{border-color:rgba(83,185,236,.65)}
+    .currency-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .currency{display:flex;align-items:center;gap:9px;font-size:14px;color:#dce8f5;font-weight:700}
+    .flag{width:25px;height:25px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.07);font-size:16px}
+    .currency small{display:block;color:var(--muted);font-size:11px;font-weight:500;margin-top:2px}
+    input{display:block;width:100%;margin-top:11px;padding:0;border:0;outline:0;background:transparent;color:var(--text);font-size:clamp(29px,8vw,38px);font-weight:650;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+    input::placeholder{color:#52647a}
+    .swap-wrap{display:flex;align-items:center;gap:12px;margin:13px 0}
+    .swap-line{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+    .swap{width:43px;height:43px;border-radius:14px;border:1px solid rgba(83,185,236,.28);background:rgba(83,185,236,.09);color:#75cef5;font-size:20px;cursor:pointer;transition:transform .2s,background .2s}
+    .swap:active{transform:rotate(180deg) scale(.96);background:rgba(83,185,236,.18)}
+    .result{margin-top:16px;padding:18px 17px 16px;border-radius:18px;background:linear-gradient(115deg,rgba(42,125,169,.16),rgba(255,155,69,.09));border:1px solid rgba(108,172,207,.19)}
+    .result-label{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#a9bfd3;font-weight:700}
+    .result-value{font-size:clamp(30px,8vw,39px);font-weight:750;letter-spacing:-.045em;margin-top:7px;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+    .result-code{font-size:13px;color:#b1c2d5;margin-top:4px}
+    .quote{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+    .quote-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .quote-title{font-size:12px;color:#d9e4ef;font-weight:650}
+    .refresh{border:0;background:transparent;color:#80ccef;font-size:12px;font-weight:650;padding:5px 0;cursor:pointer}
+    .refresh:disabled{opacity:.5;cursor:wait}
+    .rate-line{display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-size:12px;color:var(--muted)}
+    .rate-line strong{font-weight:650;color:#e8f0f8;font-variant-numeric:tabular-nums;text-align:right}
+    .change{font-variant-numeric:tabular-nums}
+    .change.up{color:var(--green)}
+    .change.down{color:var(--red)}
+    .status{font-size:11px;color:var(--muted);margin-top:13px;line-height:1.45;min-height:16px}
+    .status.error{color:#ffb3a9}
+    .status.ok{color:#8bd9b9}
+    .foot{margin:15px 8px 0;text-align:center;color:#778ba3;font-size:10px;line-height:1.5}
+    button:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+    @media(max-width:360px){.card{padding:17px}.top{margin-bottom:15px}.live{font-size:10px;padding:6px 8px}}
   </style>
 </head>
 <body>
   <main class="app">
-    <header class="top"><div class="brand"><div class="mark" aria-hidden="true">↔</div><div><div class="brand-title">Dólar ↔ Real</div><div class="brand-sub">Conversor de moedas</div></div></div><div class="live"><span class="dot" id="liveDot"></span><span id="liveLabel">Conectando</span></div></header>
+
+    <a href="./index.html" class="back-button">
+      <span>←</span> Voltar ao BREAVYS MOBILE
+    </a>
+
+    <header class="top">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">↔</div>
+        <div>
+          <div class="brand-title">Dólar ↔ Real</div>
+          <div class="brand-sub">Conversor de moedas</div>
+        </div>
+      </div>
+      <div class="live">
+        <span class="dot" id="liveDot"></span>
+        <span id="liveLabel">Conectando</span>
+      </div>
+    </header>
+
     <section class="card" aria-label="Conversor de moedas">
       <p class="eyebrow">Quero converter</p>
-      <div class="amount-box"><div class="currency-row"><div class="currency"><span class="flag" id="fromFlag">🇺🇸</span><span><span id="fromName">Dólar americano</span><small id="fromCode">USD</small></span></div></div><input id="amount" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="Valor para converter" placeholder="0,00" value="10"></div>
-      <div class="swap-wrap"><div class="swap-line"></div><button class="swap" id="swap" type="button" aria-label="Inverter moedas" title="Inverter moedas">⇅</button><div class="swap-line"></div></div>
-      <div class="amount-box"><div class="currency-row"><div class="currency"><span class="flag" id="toFlag">🇧🇷</span><span><span id="toName">Real brasileiro</span><small id="toCode">BRL</small></span></div></div><div class="result-label" style="margin-top:14px">Você recebe</div><div class="result-value" id="result" aria-live="polite">—</div><div class="result-code" id="resultCaption">10,00 USD em BRL</div></div>
-      <div class="quote"><div class="quote-head"><div class="quote-title">Cotação do dólar</div><button class="refresh" id="refresh" type="button">↻ Atualizar</button></div><div class="rate-line"><span>Taxa usada no cálculo</span><strong id="usedRate">Buscando...</strong></div><div class="rate-line"><span>Compra · Venda</span><strong id="bidAsk">—</strong></div><div class="rate-line"><span>Variação do dia</span><strong class="change" id="change">—</strong></div><div class="status" id="status" role="status">Buscando a cotação mais recente...</div></div>
-    </section>
-    <p class="foot">Cotação de referência. Bancos, cartões e casas de câmbio podem aplicar taxas, spread e IOF.</p>
-  </main>
-  <script>
-(() => {
-  'use strict';
-  const API = 'https://economia.awesomeapi.com.br/json/last/USD-BRL';
-  const $ = (id) => document.getElementById(id);
-  const els = {amount:$('amount'),fromFlag:$('fromFlag'),toFlag:$('toFlag'),fromName:$('fromName'),toName:$('toName'),fromCode:$('fromCode'),toCode:$('toCode'),result:$('result'),resultCaption:$('resultCaption'),usedRate:$('usedRate'),bidAsk:$('bidAsk'),change:$('change'),status:$('status'),refresh:$('refresh'),liveLabel:$('liveLabel'),liveDot:$('liveDot')};
-  let direction='USD-BRL',quote=null,lastUpdated=null;
-  const numberBR=(n,d=2)=>new Intl.NumberFormat('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}).format(n);
-  const money=(n,c)=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:c,minimumFractionDigits:2,maximumFractionDigits:2}).format(n);
-  function parseAmount(v){let s=String(v||'').trim().replace(/\s/g,'').replace(/[^0-9,.-]/g,'');if(!s||s==='-'||s===','||s==='.')return 0;if(s.includes(','))s=s.replace(/\./g,'').replace(',','.');const n=Number(s);return Number.isFinite(n)&&n>=0?n:0;}
-  function setStatus(m,k=''){els.status.textContent=m;els.status.className='status'+(k?' '+k:'');}
-  function setConnection(on,label){els.liveLabel.textContent=label;els.liveDot.style.background=on?'var(--green)':'var(--orange)';els.liveDot.style.boxShadow=on?'0 0 10px rgba(85,214,161,.65)':'0 0 10px rgba(255,155,69,.45)';}
-  function render(){const direct=direction==='USD-BRL';els.fromFlag.textContent=direct?'🇺🇸':'🇧🇷';els.toFlag.textContent=direct?'🇧🇷':'🇺🇸';els.fromName.textContent=direct?'Dólar americano':'Real brasileiro';els.toName.textContent=direct?'Real brasileiro':'Dólar americano';els.fromCode.textContent=direct?'USD':'BRL';els.toCode.textContent=direct?'BRL':'USD';const amount=parseAmount(els.amount.value);if(quote){const value=direct?amount*quote.bid:amount/quote.ask,formatted=money(value,direct?'BRL':'USD');els.result.textContent=formatted;els.resultCaption.textContent=`${numberBR(amount)} ${direct?'USD':'BRL'} em ${direct?'BRL':'USD'}`;els.usedRate.textContent=direct?`R$ ${numberBR(quote.bid,4)} por US$ 1`:`R$ ${numberBR(quote.ask,4)} por US$ 1`;els.bidAsk.textContent=`R$ ${numberBR(quote.bid,4)} · R$ ${numberBR(quote.ask,4)}`;const p=Number(quote.pctChange||0);els.change.textContent=`${p>0?'+':''}${numberBR(p,2)}%`;els.change.className='change '+(p>0?'up':p<0?'down':'');}else{els.result.textContent='—';els.resultCaption.textContent=`${numberBR(amount)} ${direct?'USD':'BRL'} em ${direct?'BRL':'USD'}`;els.usedRate.textContent='—';}}
-  function save(){try{localStorage.setItem('usdbrl_quote_v1',JSON.stringify({quote,lastUpdated}));}catch(_){}}
-  function loadSaved(){try{const s=JSON.parse(localStorage.getItem('usdbrl_quote_v1')||'null');if(s?.quote&&Number(s.quote.bid)>0&&Number(s.quote.ask)>0){quote=s.quote;lastUpdated=s.lastUpdated||s.quote.create_date||null;render();setConnection(false,'Cotação salva');setStatus(`Sem conexão. Exibindo a última cotação salva${lastUpdated?' ('+lastUpdated+')':''}.`,'error');}}catch(_){}}
-  async function refreshQuote(){els.refresh.disabled=true;els.refresh.textContent='Atualizando...';setStatus('Consultando a cotação mais recente...');let timer;try{const controller=new AbortController();timer=setTimeout(()=>controller.abort(),12000);const r=await fetch(API,{cache:'no-store',signal:controller.signal,headers:{Accept:'application/json'}});if(!r.ok)throw Error(`Servidor respondeu ${r.status}`);const d=await r.json(),raw=d&&d.USDBRL,bid=Number(raw&&raw.bid),ask=Number(raw&&raw.ask);if(!raw||!Number.isFinite(bid)||!Number.isFinite(ask)||bid<=0||ask<=0)throw Error('Cotação inválida recebida');quote={bid,ask,pctChange:Number(raw.pctChange||0),create_date:raw.create_date||''};lastUpdated=raw.create_date||new Date().toLocaleString('pt-BR');save();render();setConnection(true,'Cotação atualizada');setStatus(`Fonte: AwesomeAPI · Atualizado em ${lastUpdated}. Toque em Atualizar para consultar novamente.`,'ok');}catch(e){if(!quote)loadSaved();if(!quote){setConnection(false,'Sem conexão');setStatus('Não foi possível obter a cotação. Confira sua internet e toque em Atualizar.','error');}else{setConnection(false,'Última cotação');setStatus(`Falha ao atualizar. Usando cotação salva (${lastUpdated||'data não informada'}).`,'error');}}finally{clearTimeout(timer);els.refresh.disabled=false;els.refresh.textContent='↻ Atualizar';}}
-  els.amount.addEventListener('input',render);
-  $('swap').addEventListener('click',()=>{const old=quote?(direction==='USD-BRL'?parseAmount(els.amount.value)*quote.bid:parseAmount(els.amount.value)/quote.ask):null;direction=direction==='USD-BRL'?'BRL-USD':'USD-BRL';if(old!==null)els.amount.value=numberBR(old,2);render();});
-  els.refresh.addEventListener('click',refreshQuote);loadSaved();refreshQuote();
-})();
 
-</script>
-  <script>if('serviceWorker' in navigator && location.protocol.startsWith('http')){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}</script>
+      <div class="amount-box">
+        <div class="currency-row">
+          <div class="currency">
+            <span class="flag" id="fromFlag">🇺🇸</span>
+            <span>
+              <span id="fromName">Dólar americano</span>
+              <small id="fromCode">USD</small>
+            </span>
+          </div>
+        </div>
+        <input id="amount" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="Valor para converter" placeholder="0,00" value="10">
+      </div>
+
+      <div class="swap-wrap">
+        <div class="swap-line"></div>
+        <button class="swap" id="swap" type="button" aria-label="Inverter moedas" title="Inverter moedas">⇅</button>
+        <div class="swap-line"></div>
+      </div>
+
+      <div class="amount-box">
+        <div class="currency-row">
+          <div class="currency">
+            <span class="flag" id="toFlag">🇧🇷</span>
+            <span>
+              <span id="toName">Real brasileiro</span>
+              <small id="toCode">BRL</small>
+            </span>
+          </div>
+        </div>
+        <div class="result-label" style="margin-top:14px">Você recebe</div>
+        <div class="result-value" id="result" aria-live="polite">—</div>
+        <div class="result-code" id="resultCaption">10,00 USD em BRL</div>
+      </div>
+
+      <div class="quote">
+        <div class="quote-head">
+          <div class="quote-title">Cotação do dólar</div>
+          <button class="refresh" id="refresh" type="button">↻ Atualizar</button>
+        </div>
+        <div class="rate-line">
+          <span>Taxa usada no cálculo</span>
+          <strong id="usedRate">Buscando...</strong>
+        </div>
+        <div class="rate-line">
+          <span>Compra · Venda</span>
+          <strong id="bidAsk">—</strong>
+        </div>
+        <div class="rate-line">
+          <span>Variação do dia</span>
+          <strong class="change" id="change">—</strong>
+        </div>
+        <div class="status" id="status" role="status">Buscando a cotação mais recente...</div>
+      </div>
+    </section>
+
+    <p class="foot">
+      Cotação de referência. Bancos, cartões e casas de câmbio podem aplicar taxas, spread e IOF.
+    </p>
+  </main>
+
+  <script>
+  (() => {
+    'use strict';
+
+    const API = 'https://economia.awesomeapi.com.br/json/last/USD-BRL';
+    const $ = (id) => document.getElementById(id);
+
+    const els = {
+      amount: $('amount'),
+      fromFlag: $('fromFlag'),
+      toFlag: $('toFlag'),
+      fromName: $('fromName'),
+      toName: $('toName'),
+      fromCode: $('fromCode'),
+      toCode: $('toCode'),
+      result: $('result'),
+      resultCaption: $('resultCaption'),
+      usedRate: $('usedRate'),
+      bidAsk: $('bidAsk'),
+      change: $('change'),
+      status: $('status'),
+      refresh: $('refresh'),
+      liveLabel: $('liveLabel'),
+      liveDot: $('liveDot')
+    };
+
+    let direction = 'USD-BRL';
+    let quote = null;
+    let lastUpdated = null;
+
+    const numberBR = (n, d = 2) =>
+      new Intl.NumberFormat('pt-BR', {
+        minimumFractionDigits: d,
+        maximumFractionDigits: d
+      }).format(n);
+
+    const money = (n, c) =>
+      new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: c,
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(n);
+
+    function parseAmount(v) {
+      let s = String(v || '').trim()
+        .replace(/\s/g, '')
+        .replace(/[^0-9,.-]/g, '');
+
+      if (!s || s === '-' || s === ',' || s === '.') return 0;
+
+      if (s.includes(',')) {
+        s = s.replace(/\./g, '').replace(',', '.');
+      }
+
+      const n = Number(s);
+      return Number.isFinite(n) && n >= 0 ? n : 0;
+    }
+
+    function setStatus(m, k = '') {
+      els.status.textContent = m;
+      els.status.className = 'status' + (k ? ' ' + k : '');
+    }
+
+    function setConnection(on, label) {
+      els.liveLabel.textContent = label;
+      els.liveDot.style.background = on ? 'var(--green)' : 'var(--orange)';
+      els.liveDot.style.boxShadow = on
+        ? '0 0 10px rgba(85,214,161,.65)'
+        : '0 0 10px rgba(255,155,69,.45)';
+    }
+
+    function render() {
+      const direct = direction === 'USD-BRL';
+
+      els.fromFlag.textContent = direct ? '🇺🇸' : '🇧🇷';
+      els.toFlag.textContent = direct ? '🇧🇷' : '🇺🇸';
+      els.fromName.textContent = direct ? 'Dólar americano' : 'Real brasileiro';
+      els.toName.textContent = direct ? 'Real brasileiro' : 'Dólar americano';
+      els.fromCode.textContent = direct ? 'USD' : 'BRL';
+      els.toCode.textContent = direct ? 'BRL' : 'USD';
+
+      const amount = parseAmount(els.amount.value);
+
+      if (quote) {
+        const value = direct
+          ? amount * quote.bid
+          : amount / quote.ask;
+
+        els.result.textContent = money(value, direct ? 'BRL' : 'USD');
+        els.resultCaption.textContent =
+          `${numberBR(amount)} ${direct ? 'USD' : 'BRL'} em ${direct ? 'BRL' : 'USD'}`;
+
+        els.usedRate.textContent = direct
+          ? `R$ ${numberBR(quote.bid, 4)} por US$ 1`
+          : `R$ ${numberBR(quote.ask, 4)} por US$ 1`;
+
+        els.bidAsk.textContent =
+          `R$ ${numberBR(quote.bid, 4)} · R$ ${numberBR(quote.ask, 4)}`;
+
+        const p = Number(quote.pctChange || 0);
+        els.change.textContent = `${p > 0 ? '+' : ''}${numberBR(p, 2)}%`;
+        els.change.className =
+          'change ' + (p > 0 ? 'up' : p < 0 ? 'down' : '');
+      } else {
+        els.result.textContent = '—';
+        els.resultCaption.textContent =
+          `${numberBR(amount)} ${direct ? 'USD' : 'BRL'} em ${direct ? 'BRL' : 'USD'}`;
+        els.usedRate.textContent = '—';
+      }
+    }
+
+    function save() {
+      try {
+        localStorage.setItem(
+          'usdbrl_quote_v1',
+          JSON.stringify({ quote, lastUpdated })
+        );
+      } catch (_) {}
+    }
+
+    function loadSaved() {
+      try {
+        const s = JSON.parse(
+          localStorage.getItem('usdbrl_quote_v1') || 'null'
+        );
+
+        if (s?.quote && Number(s.quote.bid) > 0 && Number(s.quote.ask) > 0) {
+          quote = s.quote;
+          lastUpdated = s.lastUpdated || s.quote.create_date || null;
+          render();
+          setConnection(false, 'Cotação salva');
+          setStatus(
+            `Sem conexão. Exibindo a última cotação salva${lastUpdated ? ' (' + lastUpdated + ')' : ''}.`,
+            'error'
+          );
+        }
+      } catch (_) {}
+    }
+
+    async function refreshQuote() {
+      els.refresh.disabled = true;
+      els.refresh.textContent = 'Atualizando...';
+      setStatus('Consultando a cotação mais recente...');
+
+      let timer;
+
+      try {
+        const controller = new AbortController();
+        timer = setTimeout(() => controller.abort(), 12000);
+
+        const r = await fetch(API, {
+          cache: 'no-store',
+          signal: controller.signal,
+          headers: { Accept: 'application/json' }
+        });
+
+        if (!r.ok) throw Error(`Servidor respondeu ${r.status}`);
+
+        const d = await r.json();
+        const raw = d && d.USDBRL;
+        const bid = Number(raw && raw.bid);
+        const ask = Number(raw && raw.ask);
+
+        if (!raw || !Number.isFinite(bid) || !Number.isFinite(ask) || bid <= 0 || ask <= 0) {
+          throw Error('Cotação inválida recebida');
+        }
+
+        quote = {
+          bid,
+          ask,
+          pctChange: Number(raw.pctChange || 0),
+          create_date: raw.create_date || ''
+        };
+
+        lastUpdated = raw.create_date || new Date().toLocaleString('pt-BR');
+
+        save();
+        render();
+        setConnection(true, 'Cotação atualizada');
+        setStatus(
+          `Fonte: AwesomeAPI · Atualizado em ${lastUpdated}. Toque em Atualizar para consultar novamente.`,
+          'ok'
+        );
+
+      } catch (e) {
+        if (!quote) loadSaved();
+
+        if (!quote) {
+          setConnection(false, 'Sem conexão');
+          setStatus(
+            'Não foi possível obter a cotação. Confira sua internet e toque em Atualizar.',
+            'error'
+          );
+        } else {
+          setConnection(false, 'Última cotação');
+          setStatus(
+            `Falha ao atualizar. Usando cotação salva (${lastUpdated || 'data não informada'}).`,
+            'error'
+          );
+        }
+
+      } finally {
+        clearTimeout(timer);
+        els.refresh.disabled = false;
+        els.refresh.textContent = '↻ Atualizar';
+      }
+    }
+
+    els.amount.addEventListener('input', render);
+
+    $('swap').addEventListener('click', () => {
+      const old = quote
+        ? (direction === 'USD-BRL'
+            ? parseAmount(els.amount.value) * quote.bid
+            : parseAmount(els.amount.value) / quote.ask)
+        : null;
+
+      direction = direction === 'USD-BRL' ? 'BRL-USD' : 'USD-BRL';
+
+      if (old !== null) {
+        els.amount.value = numberBR(old, 2);
+      }
+
+      render();
+    });
+
+    els.refresh.addEventListener('click', refreshQuote);
+
+    loadSaved();
+    refreshQuote();
+  })();
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
 </body>
 </html>
