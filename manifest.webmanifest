@@ -1,17 +1,18 @@
+
 {
   "id": "./",
-  "name": "Conversor Dólar e Real",
-  "short_name": "Dólar ↔ Real",
-  "description": "Conversor de dólar americano e real brasileiro com cotação atualizada.",
+  "name": "BREAVYS MOBILE",
+  "short_name": "BREVIARY",
+  "description": "Central pessoal de ferramentas BREVIARY.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#0a1220",
-  "theme_color": "#101a2b",
   "orientation": "portrait",
+  "background_color": "#101116",
+  "theme_color": "#101116",
   "icons": [
     {
-      "src": "icon.svg",
+      "src": "./icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
