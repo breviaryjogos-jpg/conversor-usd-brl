@@ -4,7 +4,7 @@ const CORE = [
   './',
   './index.html',
   './manifest.webmanifest',
-  './icons/icon.svg'
+  'icon.svg'
 ];
 
 self.addEventListener('install', event => {
