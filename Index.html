@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101116">
+  <title>BREVIARY MOBILE</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 32px 22px;
+      background: #101116;
+      color: #f5f5f7;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      margin: 24px 0 38px;
+    }
+
+    .brand {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      color: #92939d;
+      font-size: 14px;
+      margin-top: 9px;
+    }
+
+    h2 {
+      font-size: 16px;
+      margin-bottom: 16px;
+      color: #c5c5cc;
+      font-weight: 600;
+    }
+
+    .app-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: #1b1c24;
+      border: 1px solid #30313c;
+      border-radius: 16px;
+      padding: 22px;
+      transition: 0.2s;
+    }
+
+    .app-card:active {
+      transform: scale(0.98);
+    }
+
+    .app-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: #282b38;
+      font-size: 27px;
+      margin-bottom: 18px;
+    }
+
+    .app-name {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .app-description {
+      color: #999aa5;
+      font-size: 13px;
+      margin-top: 7px;
+      line-height: 1.5;
+    }
+
+    footer {
+      margin-top: 55px;
+      color: #666873;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">BREVIARY MOBILE</div>
+    <div class="subtitle">Sua central pessoal de ferramentas.</div>
+  </header>
+
+  <main>
+    <h2>Minhas ferramentas</h2>
+
+    <a class="app-card" href="./conversor.html">
+      <div class="app-icon">💱</div>
+      <div class="app-name">Conversor de moedas</div>
+      <div class="app-description">
+        Dólar americano ↔ Real brasileiro
+      </div>
+    </a>
+  </main>
+
+  <footer>BREVIARY · MOBILE</footer>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js");
+      });
+    }
+  </script>
+</body>
+</html>
