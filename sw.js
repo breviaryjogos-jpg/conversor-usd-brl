@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "breviary-mobile-v2";
+const CACHE_NAME = "breviary-mobile-v3";
 
 const FILES_TO_CACHE = [
   "./",
@@ -7,7 +7,7 @@ const FILES_TO_CACHE = [
   "./conversor.html",
   "./calculadora.html",
   "./manifest.webmanifest",
-  "./icon.svg"
+  "./app-icon.png"
 ];
 
 self.addEventListener("install", (event) => {
