@@ -1,10 +1,11 @@
 
-const CACHE_NAME = "breviary-mobile-v1";
+const CACHE_NAME = "breviary-mobile-v2";
 
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
   "./conversor.html",
+  "./calculadora.html",
   "./manifest.webmanifest",
   "./icon.svg"
 ];
